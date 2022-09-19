@@ -5,9 +5,11 @@ import androidx.room.Room
 import com.lemonboy.unsplashdemoapi.data.local.UnsplashDatabase
 import com.lemonboy.unsplashdemoapi.util.Constants.UNSPLASH_DATABASE
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 /**
  * Database instance class
@@ -18,6 +20,8 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
+    @Provides
+    @Singleton
     fun provideDatabase(
         @ApplicationContext context: Context):
             UnsplashDatabase {

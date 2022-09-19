@@ -1,6 +1,7 @@
 package com.lemonboy.unsplashdemoapi.data.remote
 
 import com.lemonboy.unsplashdemoapi.BuildConfig
+import com.lemonboy.unsplashdemoapi.model.SearchResult
 import com.lemonboy.unsplashdemoapi.model.UnsplashImage
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -18,13 +19,13 @@ interface UnsplashApi {
     @GET("/photos")
     suspend fun getAllImages(
         @Query("page") page: Int,
-        @Query("per_page") per_page: Int
+        @Query("per_page") perPage: Int
     ): List<UnsplashImage>
 
     @Headers("Authorization: Client-ID ${BuildConfig.API_KEY}")
     @GET("/search/photos")
     suspend fun searchImages(
-        @Query("page") page: Int,
-        @Query("per_page") per_page: Int
-    ): List<UnsplashImage>
+        @Query("query") query: String,
+        @Query("per_page") perPage: Int
+    ): SearchResult
 }
